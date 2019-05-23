@@ -1,0 +1,161 @@
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.app {
+  text-align: center;
+  width: 100%;
+  height: 100%;
+}
+
+.app-footer {
+  position: absolute;
+  bottom: 18px;
+  text-transform: uppercase;
+  width: 100%;
+  font-size: 24px;
+  text-align: center;
+  letter-spacing: 5px;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+  font-weight: lighter;
+  color: rgba(236, 100, 9, 0.28);
+}
+
+.app-background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.fireworks {
+  background-image: url("./images/fireworks.png");
+  background-position-y: top;
+}
+
+.title {
+  background-image: url("./images/title.png");
+  background-size: contain;
+  background-position-x: left;
+  width: 344px;
+  height: 478px;
+  margin-top: 11px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: -7px;
+}
+
+@media (max-width: 1280px) {
+  .title {
+    width: 229px;
+    height: 318px;
+    padding-left: -5px;
+  }
+}
+
+.kanban-erika {
+  background-image: url("./images/kanban-erika.png");
+  background-position-x: left;
+}
+
+.kanban-misty {
+  background-image: url("./images/kanban-misty.png");
+  background-position-x: right;
+}
+
+.fireworks, .kanban-erika, .kanban-misty {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.app-navs {
+  position: absolute;
+  bottom: 108px;
+  left: 50%;
+  margin-left: -14%;
+  width: 27.8%;
+}
+
+.nav-splitters {
+  background: url("./images/nav-splitters.png") no-repeat center;
+  background-size: cover;
+  position: absolute;
+  top: 0;
+  left: 12%;
+  width: 76%;
+  padding-top: 44%;
+  z-index: -1;
+}
+
+.nav-links {
+  width: 100%;
+}
+
+.nav-schedule {
+  background-image: url("./images/nav-schedule.png");
+}
+
+.nav-place {
+  background-image: url("./images/nav-place.png");
+}
+
+.nav-prize {
+  background-image: url("./images/nav-prize.png");
+}
+
+.nav-ticket {
+  background-image: url("./images/nav-ticket.png");
+}
+
+.nav-events {
+  background-image: url("./images/nav-events.png");
+}
+
+.nav-stall {
+  background-image: url("./images/nav-stall.png");
+}
+
+.nav-link {
+  float: left;
+  width: 8%;
+  padding: 6px 0;
+  margin-left: 10.4%;
+}
+
+.nav-link:hover {
+  background-color: #727087;
+}
+
+.nav-link > a {
+  display: block;
+  width: 100%;
+  padding-top: 550%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
+}
+
+.nav-link:nth-child(1) {
+  margin-left: 0;
+}
+
+.container-container {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.hidden-object {
+  display: none;
+}

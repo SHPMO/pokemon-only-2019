@@ -1,0 +1,47 @@
+.app-container {
+  position: absolute;
+  top: 0;
+  width: 687px;
+  height: 100%;
+  background: rgba(225, 211, 212, 0.78);
+}
+
+.container-left {
+  left: 0;
+}
+
+.container-right {
+  right: 0;
+}
+
+.container-left-entering,
+.container-left-entered {
+  left: 0;
+}
+
+.container-right-entering,
+.container-right-entered {
+  right: 0;
+}
+
+.container-left-exiting, .container-left-exited {
+  left: -687px;
+}
+
+.container-right-exiting, .container-right-exited {
+  right: -687px;
+}
+
+@media (max-width: 720px) {
+  .app-container {
+    width: 100%;
+  }
+
+  .container-left-exiting, .container-left-exited {
+    left: -100%;
+  }
+
+  .container-right-exiting, .container-right-exited {
+    right: -100%;
+  }
+}
