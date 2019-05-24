@@ -2,6 +2,7 @@
   position: absolute;
   top: 0;
   width: 687px;
+  z-index: 3;
   height: 100%;
   background: rgba(225, 211, 212, 0.78);
 }

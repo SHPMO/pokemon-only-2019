@@ -3,31 +3,33 @@ import './App.css'
 import Container, {ContentType} from './Container'
 
 
+const NavNames: ContentType[] = ['schedule', 'place', 'prize', 'ticket', 'events', 'stall']
+
 interface AppState {
-  showContainer: boolean
+  selectedContentType: ContentType | null
 }
 
 class App extends React.Component<{}, AppState> {
   private container: Container | null = null
 
   public state = {
-    showContainer: false
+    selectedContentType: null
   }
 
   public navClick(name: ContentType) {
     return () => {
       if (this.container !== null) {
         this.setState({
-          showContainer: true
+          selectedContentType: name
         })
-        this.container.load(name)
+        this.container.prepareLoad(name)
       }
     }
   }
 
   private containerClick() {
     return () => {
-      if (this.state.showContainer && this.container !== null) {
+      if (this.state.selectedContentType !== null && this.container !== null) {
         this.container.hide()
       }
     }
@@ -36,12 +38,19 @@ class App extends React.Component<{}, AppState> {
   private containerExit() {
     return () => {
       this.setState({
-        showContainer: false
+        selectedContentType: null
       })
     }
   }
 
+  private gameClick() {
+    return () => {
+      window.open('/', '_blank')
+    }
+  }
+
   public render() {
+    const selected = this.state.selectedContentType
     return (
       <div className="app">
         <div className="app-background">
@@ -51,28 +60,19 @@ class App extends React.Component<{}, AppState> {
           <div className="kanban-misty"/>
         </div>
         <div className="app-navs">
+          <div onClick={this.gameClick()} className="nav-game">
+            <div className="nav-game-start" />
+          </div>
           <div className="nav-splitters"/>
           <div className="nav-links">
-            <div className="nav-link">
-              <a onClick={this.navClick('schedule')} className="nav-schedule"/></div>
-            <div className="nav-link">
-              <a onClick={this.navClick('place')} className="nav-place"/>
-            </div>
-            <div className="nav-link">
-              <a onClick={this.navClick('prize')} className="nav-prize"/>
-            </div>
-            <div className="nav-link">
-              <a onClick={this.navClick('ticket')} className="nav-ticket"/>
-            </div>
-            <div className="nav-link">
-              <a onClick={this.navClick('events')} className="nav-events"/>
-            </div>
-            <div className="nav-link">
-              <a onClick={this.navClick('stall')} className="nav-stall"/>
-            </div>
+            {NavNames.map((navName, i) => (
+              <div className={`nav-link ${selected === navName ? 'nav-link-selected' : ''}`} key={i}>
+                <a onClick={this.navClick(navName)} className={`nav-${navName}`}/>
+              </div>
+            ))}
           </div>
         </div>
-        <div className={`container-container ${this.state.showContainer ? '' : 'hidden-object'}`}
+        <div className={`container-container ${selected !== null ? '' : 'hidden-object'}`}
              onClick={this.containerClick()}/>
         <Container ref={x => this.container = x} onExit={this.containerExit()}/>
         <footer className="app-footer">Pokemon Only in Shanghai 2019</footer>

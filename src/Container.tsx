@@ -35,19 +35,15 @@ export default class Container extends React.Component<ContainerProps, Container
     }
   }
 
-  private switchSide(contentType: ContentType) {
+  public prepareLoad(contentType: ContentType) {
+    const onLeft = contentType === 'ticket' || contentType === 'events' || contentType === 'stall'
     this.waitForSwitch = contentType
     this.setState({
-      onLeft: !this.state.onLeft
+      onLeft
     })
   }
 
   public load(contentType: ContentType) {
-    const onLeft = contentType === 'ticket' || contentType === 'events' || contentType === 'stall'
-    if (onLeft !== this.state.onLeft) {
-      this.switchSide(contentType)
-      return
-    }
     this.setState({
       in: true,
       contentType
@@ -69,6 +65,8 @@ export default class Container extends React.Component<ContainerProps, Container
   }
 
   public componentDidUpdate(): void {
+    // tslint:disable-next-line:no-console
+    console.log(this.waitForSwitch)
     if (this.waitForSwitch !== null) {
       const t = this.waitForSwitch
       this.waitForSwitch = null
@@ -79,8 +77,6 @@ export default class Container extends React.Component<ContainerProps, Container
   }
 
   public render() {
-    // tslint:disable-next-line:no-console
-    console.log(this.state)
     return (
       <Transition timeout={TransitionDuration} in={this.state.in} onExited={this.exited()}>
         {state => (<div

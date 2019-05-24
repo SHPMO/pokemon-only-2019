@@ -13,7 +13,7 @@ html, body {
 
 .app-footer {
   position: absolute;
-  bottom: 18px;
+  bottom: 1.6%;
   text-transform: uppercase;
   width: 100%;
   font-size: 24px;
@@ -28,6 +28,7 @@ html, body {
   position: absolute;
   width: 100%;
   height: 100%;
+  z-index: -4;
 }
 
 .fireworks {
@@ -42,17 +43,10 @@ html, body {
   width: 344px;
   height: 478px;
   margin-top: 11px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: -7px;
-}
-
-@media (max-width: 1280px) {
-  .title {
-    width: 229px;
-    height: 318px;
-    padding-left: -5px;
-  }
+  position: absolute;
+  top: 0;
+  left: 50%;
+  margin-left: -172px;
 }
 
 .kanban-erika {
@@ -69,7 +63,6 @@ html, body {
   position: absolute;
   top: 0;
   left: 0;
-  z-index: -1;
   width: 100%;
   height: 100%;
   background-size: contain;
@@ -78,17 +71,67 @@ html, body {
 
 .app-navs {
   position: absolute;
-  bottom: 108px;
+  bottom: 10%;
   left: 50%;
-  margin-left: -14%;
+  margin-left: -13.9%;
   width: 27.8%;
+}
+
+.nav-game {
+  position: relative;
+  z-index: 1;
+  margin: auto auto 4.4%;
+  width: 74.16%;
+  padding-top: 14.42%;
+  background: url("./images/nav-game.png") no-repeat top center;
+  background-size: contain;
+  cursor: pointer;
+}
+
+.nav-game-start {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  margin-left: -15.91%;
+  opacity: 0;
+  background: url("./images/nav-game-start.png") no-repeat center bottom;
+  background-size: contain;
+  width: 31.82%;
+  height: 24.68%;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.nav-game:hover > .nav-game-start {
+  animation: fadeIn 1s infinite alternate;
+}
+
+.nav-game:hover::before {
+  display: block;
+  content: "";
+  position: absolute;
+  left: -12.625%;
+  top: 0;
+  z-index: -1;
+  width: 125.25%;
+  height: 100%;
+  background: url("./images/nav-game-hover.png") no-repeat center;
+  background-size: contain;
 }
 
 .nav-splitters {
   background: url("./images/nav-splitters.png") no-repeat center;
   background-size: cover;
   position: absolute;
-  top: 0;
+  bottom: 0;
   left: 12%;
   width: 76%;
   padding-top: 44%;
@@ -128,10 +171,21 @@ html, body {
   width: 8%;
   padding: 6px 0;
   margin-left: 10.4%;
+  position: relative;
+  z-index: 2;
 }
 
-.nav-link:hover {
-  background-color: #727087;
+.nav-link:hover::before, .nav-link-selected::before {
+  display: block;
+  content: "";
+  position: absolute;
+  left: -32.85%;
+  top: -18.25%;
+  z-index: -1;
+  width: 165.7%;
+  height: 136.5%;
+  background: url("./images/nav-hover.png") no-repeat center;
+  background-size: contain;
 }
 
 .nav-link > a {
@@ -154,8 +208,50 @@ html, body {
   top: 0;
   width: 100%;
   height: 100%;
+  z-index: 3;
 }
 
 .hidden-object {
   display: none;
 }
+
+@media (max-width: 1440px) {
+  .title {
+    width: 229px;
+    height: 318px;
+    margin-left: -114.5px;
+  }
+}
+
+@media (min-aspect-ratio: 4/3) and (max-width: 1024px) {
+  .title {
+    width: 138px;
+    height: 191px;
+    margin-left: -69px;
+  }
+}
+
+@media (max-width: 720px) {
+  .app-footer {
+    font-size: 16px;
+  }
+}
+
+@media (max-aspect-ratio: 4/3) {
+  @media (min-aspect-ratio: 1/1) {
+    .nav-game {
+      display: none;
+    }
+  }
+
+  .app-navs {
+    left: 50%;
+    margin-left: -40%;
+    width: 80%;
+  }
+
+  .kanban-erika, .kanban-misty {
+    display: none;
+  }
+}
+
