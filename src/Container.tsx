@@ -119,6 +119,7 @@ export default class Container extends React.Component<ContainerProps, Container
           <div className="container-close"><Link to="/">×</Link></div>
           {title.map((c, i) => (<div key={i} className="container-title">{c}</div>))}
         </div>
+        <div className="container-content">
         {((t: ContentType | null) => {
           switch (t) {
             case 'schedule':
@@ -136,6 +137,7 @@ export default class Container extends React.Component<ContainerProps, Container
           }
           return []
         })(this.state.contentType)}
+        </div>
       </div>)}
     </Transition>)
   }

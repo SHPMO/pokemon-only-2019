@@ -1,4 +1,6 @@
 .app-container {
+  display: flex;
+  flex-direction: column;
   position: absolute;
   top: 0;
   width: 687px;
@@ -97,7 +99,24 @@
   display: none;
 }
 
-@media (max-width: 720px) {
+.container-content {
+  flex: 1;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.container-content > div {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: -17px;
+  padding-right: 17px;
+  overflow-y: scroll;
+}
+
+@media (max-width: 960px) {
   .app-container {
     width: 100%;
     padding: 20px;
@@ -156,6 +175,5 @@
     line-height: inherit;
     margin-bottom: 0;
   }
-
 
 }

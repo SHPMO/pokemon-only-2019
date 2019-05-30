@@ -40,9 +40,10 @@
   height: 478px;
   margin-top: 11px;
   position: absolute;
-  top: 0;
+  top: 12px;
   left: 50%;
   margin-left: -172px;
+  z-index: 1;
 }
 
 .kanban-erika {
@@ -55,7 +56,24 @@
   background-position-x: right;
 }
 
-.fireworks, .kanban-erika, .kanban-misty {
+.background-mobile {
+  background-image: url("./images/background-mobile.png");
+  background-position: center bottom;
+  display: none;
+}
+
+.cloud {
+  background-image: url("./images/cloud.png");
+  background-position-x: right;
+  display: none;
+}
+
+.cloud-left {
+  transform: scaleX(-1);
+}
+
+.fireworks, .kanban-erika, .kanban-misty,
+.cloud, .background-mobile {
   position: absolute;
   top: 0;
   left: 0;
@@ -63,6 +81,10 @@
   height: 100%;
   background-size: contain;
   background-repeat: no-repeat;
+}
+
+.background-mobile {
+  background-size: 100% auto;
 }
 
 .app-navs {
@@ -211,22 +233,6 @@
   display: none;
 }
 
-@media (max-width: 1440px) {
-  .title {
-    width: 229px;
-    height: 318px;
-    margin-left: -114.5px;
-  }
-}
-
-@media (min-aspect-ratio: 4/3) and (max-width: 1024px) {
-  .title {
-    width: 138px;
-    height: 191px;
-    margin-left: -69px;
-  }
-}
-
 @media (max-width: 720px) {
   .app-footer {
     font-size: 16px;
@@ -249,5 +255,48 @@
   .kanban-erika, .kanban-misty {
     display: none;
   }
+
+  .kanban-mobile, .cloud {
+    display: block;
+    opacity: 0.26;
+  }
 }
 
+@media (max-width: 720px), (max-height: 840px) {
+  .title {
+    top: 6px;
+    width: 229px;
+    height: 318px;
+    margin-left: -114.5px;
+  }
+}
+
+@media (max-width: 320px), (max-height: 600px) {
+  .title {
+    width: 172px;
+    height: 239px;
+    margin-left: -86px;
+  }
+}
+
+@media (max-width: 240px), (max-height: 400px) {
+  .title {
+    width: 138px;
+    height: 191px;
+    margin-left: -69px;
+  }
+}
+
+@media (max-width: 720px) and (max-aspect-ratio: 10/16) {
+  .app-navs {
+    bottom: 25%;
+  }
+
+  .kanban-mobile, .cloud {
+    display: none;
+  }
+
+  .background-mobile {
+    display: block;
+  }
+}

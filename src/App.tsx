@@ -13,6 +13,7 @@ interface AppState {
 
 class App extends React.Component<{}, AppState> {
   private container: Container | null = null
+  private kanbanNumber = Math.floor(Math.random() * 2)
 
   public state = {
     selectedContentType: null,
@@ -57,6 +58,7 @@ class App extends React.Component<{}, AppState> {
       this.setState({
         selectedContentType: null
       })
+      Utils.setPageTitle('首页')
       Utils.finishHiding()
     }
   }
@@ -68,6 +70,7 @@ class App extends React.Component<{}, AppState> {
   }
 
   public componentDidMount(): void {
+    Utils.setPageTitle('首页')
     Utils.onHashChange()
   }
 
@@ -78,8 +81,10 @@ class App extends React.Component<{}, AppState> {
         <div className="app-background">
           <div className="fireworks"/>
           <div className="title"/>
-          <div className="kanban-erika"/>
-          <div className="kanban-misty"/>
+          <div className={`kanban-erika ${this.kanbanNumber === 0 ? 'kanban-mobile' : ''}`}/>
+          <div className={`kanban-misty ${this.kanbanNumber === 1 ? 'kanban-mobile' : ''}`}/>
+          <div className="background-mobile"/>
+          <div className={`cloud cloud-${this.kanbanNumber === 1 ? 'left' : 'right'}`}/>
         </div>
         <div className="app-navs">
           {this.state.gameReady ? <div onClick={this.gameClick()} className="nav-game">

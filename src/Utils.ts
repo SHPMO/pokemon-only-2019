@@ -56,6 +56,10 @@ class UtilsClass {
   public finishHiding() {
     this.doSwitch()
   }
+
+  public setPageTitle(name: string) {
+    document.title = `${name} - 玉虹夏日祭`
+  }
 }
 
 const Utils = new UtilsClass()

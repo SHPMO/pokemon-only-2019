@@ -1,10 +1,15 @@
 import * as React from 'react'
 
 import Link from '../Components/Link'
+import Utils from '../Utils'
 import './Schedule.css'
 
 
 export default class Schedule extends React.Component {
+  public componentDidMount(): void {
+    Utils.setPageTitle('当日行程')
+  }
+
   public render() {
     return (<div className="view-schedule">
       <h2>基本信息</h2>
@@ -40,9 +45,9 @@ export default class Schedule extends React.Component {
         <tr>
           <td/>
           <td/>
-            <td><Link to="/place">
+          <td><Link to="/place">
             诺宝中心酒店一楼兰晶剧场
-            </Link></td>
+          </Link></td>
         </tr>
         </tbody>
       </table>
