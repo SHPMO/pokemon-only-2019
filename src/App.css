@@ -233,6 +233,14 @@
   display: none;
 }
 
+.app-rotom {
+  display: block;
+  position: absolute;
+  left: 62.96%;
+  bottom: 1.2%;
+  width: 40.22%;
+}
+
 @media (max-width: 720px) {
   .app-footer {
     font-size: 16px;
@@ -259,6 +267,10 @@
   .kanban-mobile, .cloud {
     display: block;
     opacity: 0.26;
+  }
+
+  .app-rotom {
+    display: none;
   }
 }
 

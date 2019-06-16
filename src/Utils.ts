@@ -1,5 +1,5 @@
 import App from './App'
-import {ContentType} from './Container'
+import {ContentType} from './Components/Container'
 
 class UtilsClass {
   constructor() {

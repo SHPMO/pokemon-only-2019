@@ -2,15 +2,15 @@ import * as React from 'react'
 
 import {Transition} from 'react-transition-group'
 
-import Link from './Components/Link'
 import './Container.css'
+import Link from './Link'
 
-import Events from './Views/Events'
-import Place from './Views/Place'
-import Prize from './Views/Prize'
-import Schedule from './Views/Schedule'
-import Stall from './Views/Stall'
-import Ticket from './Views/Ticket'
+import Events from '../Views/Events'
+import Place from '../Views/Place'
+import Prize from '../Views/Prize'
+import Schedule from '../Views/Schedule'
+import Stall from '../Views/Stall'
+import Ticket from '../Views/Ticket'
 
 
 export type ContentType = 'schedule' | 'place' | 'prize' | 'ticket' | 'events' | 'stall'

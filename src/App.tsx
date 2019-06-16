@@ -1,6 +1,7 @@
 import * as React from 'react'
 import './App.css'
-import Container, {ContentType} from './Container'
+import Container, {ContentType} from './Components/Container'
+import Rotom from './Components/Rotom'
 import Utils from './Utils'
 
 
@@ -99,6 +100,7 @@ class App extends React.Component<{}, AppState> {
             ))}
           </div>
         </div>
+        <Rotom className="app-rotom"/>
         <div className={`container-container ${selected !== null ? '' : 'hidden-object'}`}
              onClick={this.containerClick()}/>
         <Container ref={x => this.container = x} onExit={this.containerExit()}/>
