@@ -110,6 +110,6 @@ export default class ItemView extends React.Component<RouteComponentProps<{
             <img src={API.getImageUrl(this.state.preview)}/>
           </div> : []}
       </div>
-    ) : <h1>暂无商品信息</h1>
+    ) : <h2>暂无商品信息</h2>
   }
 }

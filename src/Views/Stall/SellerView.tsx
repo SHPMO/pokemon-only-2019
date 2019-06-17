@@ -45,6 +45,6 @@ export default class SellerView extends React.Component<RouteComponentProps<{ se
         </div>
       </div>
       <Items sellerId={seller.id.toString()}/>
-    </div>) : <h1>暂无摊位信息</h1>
+    </div>) : <h2>暂无摊位信息</h2>
   }
 }

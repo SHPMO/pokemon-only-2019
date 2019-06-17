@@ -18,7 +18,7 @@ class App extends React.Component<{}, AppState> {
 
   public state = {
     selectedContentType: null,
-    gameReady: false
+    gameReady: true
   }
 
   constructor(props: {}) {
@@ -66,7 +66,7 @@ class App extends React.Component<{}, AppState> {
 
   private gameClick() {
     return () => {
-      window.open('/', '_blank')
+      window.open('https://www.weibo.com/3551441340/HzcZ7vvkK', '_blank')
     }
   }
 

@@ -49,7 +49,7 @@ export default class Items extends React.Component<{ sellerId?: string }, { item
               <div className="item-intro">简介：{item.introduction}</div>
             </div>
           </div>)
-        }) : <h1>暂无商品信息</h1>}
+        }) : <h2>暂无商品信息</h2>}
       </div>
     </div>)
   }
