@@ -67,6 +67,7 @@ class App extends React.Component<{}, AppState> {
   private gameClick() {
     return () => {
       window.open('https://www.weibo.com/3551441340/HzcZ7vvkK', '_blank')
+      // window.open('https://www.getdaze.org/pmo2019/game', '_blank')
     }
   }
 

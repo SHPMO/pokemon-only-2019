@@ -33,7 +33,7 @@ export default class Schedule extends React.Component {
         <tr>
           <td/>
           <td/>
-          <td>09:30 ~ 16:30</td>
+          <td>09:31 ~ 16:30</td>
         </tr>
         <tr>
           <td>地点</td>
@@ -62,7 +62,7 @@ export default class Schedule extends React.Component {
       <table className="schedule-table">
         <tbody>
         <tr>
-          <td>09:30</td>
+          <td>09:31</td>
           <td>开场（10:30 前不可出场）</td>
         </tr>
         <tr>

@@ -23,23 +23,23 @@ type Vector2 = [number, number]
 type Rect = [Vector2, Vector2]
 
 const EYE_AREAS: Rect[] = [[
-  [502, 264],
-  [524, 295]
+  [466, 247],
+  [486, 276]
 ], [
-  [566, 253],
-  [586, 288]
+  [528, 239],
+  [546, 265]
 ]]
 const SCREEN_AREA: Rect = [
-  [492, 295],
-  [601, 366]
+  [459, 274],
+  [561, 340]
 ]
 const TOP_AREA: Rect = [
-  [503, 126],
-  [564, 224]
+  [476, 131],
+  [514, 207]
 ]
 const ROTOM_AREA: Rect = [
-  [356, 229],
-  [WIDTH, HEIGHT]
+  [335, 124],
+  [659, 368]
 ]
 
 
@@ -105,6 +105,7 @@ export default class Rotom extends React.Component<RotomProps, RotomState> {
   private drawCallback = this.draw.bind(this)
   private updateSayingCallback = this.updateSaying.bind(this)
   private touchCallback = this.touch.bind(this)
+  private touchStartCallback = this.touchStart.bind(this)
   private hidePosterCallback = this.hidePoster.bind(this)
   private startTime = 0
   private sayingStartTime = 0
@@ -275,13 +276,24 @@ export default class Rotom extends React.Component<RotomProps, RotomState> {
     this.eyeClosing = Date.now()
   }
 
+  private touchStart(e: TouchEvent) {
+    const {clientX, clientY} = e.touches[0]
+    this.touch(new MouseEvent('mousedown', {
+      clientX,
+      clientY
+    }))
+  }
+
   private touch(e: MouseEvent) {
     if (this.canvas.current === null) {
       return
     }
-    const rect = this.canvas.current.getBoundingClientRect()
-    const x = e.clientX - rect.left
-    const y = e.clientY - rect.top
+    const canvas = this.canvas.current
+    const rect = canvas.getBoundingClientRect()
+    const x = (e.clientX - rect.left) / canvas.clientWidth * canvas.width
+    const y = (e.clientY - rect.top) / canvas.clientHeight * canvas.height
+    // tslint:disable-next-line:no-console
+    console.log([x, y])
     for (const eyeArea of EYE_AREAS) {
       if (checkArea([x, y], eyeArea)) {
         // touch eyes.
@@ -339,8 +351,8 @@ export default class Rotom extends React.Component<RotomProps, RotomState> {
           {this.toSay.substr(0, this.state.sayingProgress)}
         </div>}
       <canvas className="rotom-canvas" width={WIDTH} height={HEIGHT} ref={this.canvas}
-              onMouseDown={this.touchCallback}>A
-        Rotom here
+              onMouseDown={this.touchCallback} onTouchStart={this.touchStartCallback}>
+        A Rotom here
       </canvas>
       {this.state.poster ?
         <div className="image-preview" onClick={this.hidePosterCallback}>
