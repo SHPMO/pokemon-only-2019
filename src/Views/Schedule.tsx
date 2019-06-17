@@ -51,6 +51,13 @@ export default class Schedule extends React.Component {
         </tr>
         </tbody>
       </table>
+      <h2>主要内容</h2>
+      <ul className="schedule-list">
+        <li>精灵宝可梦系列相关同人物贩售</li>
+        <li>舞台区表演 & 互动游戏</li>
+        <li>联机对战</li>
+        <li>场地活动</li>
+      </ul>
       <h2>行程安排</h2>
       <table className="schedule-table">
         <tbody>

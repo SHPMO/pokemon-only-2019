@@ -1,7 +1,6 @@
 import * as React from 'react'
 
 import Utils from '../Utils'
-import './Place.css'
 
 
 export default class Ticket extends React.Component {
@@ -11,7 +10,7 @@ export default class Ticket extends React.Component {
 
   public render() {
     return (<div className="view-ticket">
-      <div>即将开始</div>
+      <div>即将开始（请期待后续宣传）</div>
     </div>)
   }
 }

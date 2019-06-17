@@ -23,6 +23,8 @@ class UtilsClass {
   public contentType: ContentType | null = null
   public subUrl: string = ''
 
+  private lastStallUrl: string = ''
+
   public switchUrl(url: string) {
     const m = url.match(/^#?\/(.*?)(\/.*)?$/)
     if (m === null || m[1].length === 0) {
@@ -35,8 +37,17 @@ class UtilsClass {
     this.toSwitch = url
     const currentType = this.app!.state.selectedContentType
     if (currentType !== null && currentType !== this.contentType) {
+      if (currentType === 'stall') {
+        this.lastStallUrl = this.currentUrl
+      }
       this.app!.hideContent()
     } else {
+      if (this.contentType === 'stall' && this.lastStallUrl !== '') {
+        const t = this.lastStallUrl
+        this.lastStallUrl = ''
+        this.switchUrl(t)
+        return
+      }
       this.doSwitch()
     }
   }

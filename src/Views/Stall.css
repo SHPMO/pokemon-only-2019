@@ -1,0 +1,15 @@
+.view-stall {
+  text-align: left;
+  font-size: 20px;
+}
+
+.stall-navs {
+  margin-bottom: 18px;
+  text-align: right;
+}
+
+.stall-navs > a {
+  text-decoration: none;
+  display: inline-block;
+  margin-right: 12px;
+}

@@ -1,5 +1,7 @@
 import * as React from 'react'
 
+import PosterImage from '../images/rotom-loves-you.jpg'
+
 import './Rotom.css'
 
 const WIDTH = 720
@@ -55,6 +57,7 @@ interface RotomProps {
 
 interface RotomState {
   sayingProgress: number
+  poster: boolean
 }
 
 type RotomPartName = 'body' | 'bodyEyetouched' | 'footLeft' | 'footRight' | 'handLeft' | 'handRight'
@@ -102,16 +105,20 @@ export default class Rotom extends React.Component<RotomProps, RotomState> {
   private drawCallback = this.draw.bind(this)
   private updateSayingCallback = this.updateSaying.bind(this)
   private touchCallback = this.touch.bind(this)
+  private hidePosterCallback = this.hidePoster.bind(this)
   private startTime = 0
   private sayingStartTime = 0
   private toSay = ''
   private sayingSpeed = -1
+  private sayingPause = -1
   private eyeTouched = 0
   private eyeClosing = -1
   private avoiding = -1
+  private showingPoster = false
 
   public state = {
-    sayingProgress: -1
+    sayingProgress: -1,
+    poster: false
   }
 
   private loadImage(
@@ -200,7 +207,7 @@ export default class Rotom extends React.Component<RotomProps, RotomState> {
     const progress = time * SAYING_SPEED
     const sayingProgress = Math.floor(progress)
     if (sayingProgress > this.toSay.length) {
-      if (time - this.toSay.length / this.sayingSpeed >= SAYING_PAUSE) {
+      if (time - this.toSay.length / this.sayingSpeed >= this.sayingPause) {
         this.endSaying()
         this.waitRandomlyTalk()
         return
@@ -213,9 +220,13 @@ export default class Rotom extends React.Component<RotomProps, RotomState> {
     requestAnimationFrame(this.updateSayingCallback)
   }
 
-  private say(toSay: string, speed: number = SAYING_SPEED) {
+  private say(toSay: string, speed: number = SAYING_SPEED, pause: number = SAYING_PAUSE) {
+    if (this.showingPoster) {
+      return
+    }
     this.toSay = toSay
     this.sayingSpeed = speed
+    this.sayingPause = pause
     this.sayingStartTime = Date.now()
     this.updateSaying()
   }
@@ -223,9 +234,22 @@ export default class Rotom extends React.Component<RotomProps, RotomState> {
   private endSaying() {
     this.toSay = ''
     this.sayingSpeed = -1
+    this.sayingPause = -1
     this.sayingStartTime = 0
     this.setState({
       sayingProgress: -1
+    })
+    if (this.showingPoster) {
+      this.showingPoster = false
+      this.setState({
+        poster: true
+      })
+    }
+  }
+
+  private hidePoster() {
+    this.setState({
+      poster: false
     })
   }
 
@@ -281,14 +305,13 @@ export default class Rotom extends React.Component<RotomProps, RotomState> {
       }
     }
     if (checkArea([x, y], SCREEN_AREA)) {
-      this.say('欢迎加入洛托姆是宇宙的中心俱乐部！')
+      this.say('欢迎加入洛托姆是宇宙的中心俱乐部！', SAYING_SPEED, 1)
+      this.showingPoster = true
     } else if (checkArea([x, y], TOP_AREA)) {
       this.say('侦探的标志不是帽子而是金色长发洛托！')
     } else if (checkArea([x, y], ROTOM_AREA)) {
       this.randomlyTalk()
     }
-    // tslint:disable-next-line:no-console
-    console.log([x, y])
   }
 
   private init() {
@@ -302,8 +325,6 @@ export default class Rotom extends React.Component<RotomProps, RotomState> {
     this.loadImage(this.rotom, 'footRight', 'rotom-foot-right', 531, 346, 71, 121, EQUIV_ROTATE)
     this.loadImage(this.rotom, 'handLeft', 'rotom-hand-left', 312, 254, 412, 260, EQUIV_ROTATE, [408, 190])
     this.loadImage(this.rotom, 'handRight', 'rotom-hand-right', 566, 239, 412, 262, EQUIV_ROTATE, [4, 190])
-    // tslint:disable-next-line:no-string-literal
-    window['rotom'] = this
   }
 
   public componentDidMount(): void {
@@ -321,6 +342,10 @@ export default class Rotom extends React.Component<RotomProps, RotomState> {
               onMouseDown={this.touchCallback}>A
         Rotom here
       </canvas>
+      {this.state.poster ?
+        <div className="image-preview" onClick={this.hidePosterCallback}>
+          <img src={PosterImage}/>
+        </div> : []}
     </div>)
   }
 }

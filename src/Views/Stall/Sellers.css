@@ -1,0 +1,33 @@
+.seller-list {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.seller-display {
+  display: block;
+  width: 45%;
+  margin: 8px auto;
+  text-decoration: none;
+}
+
+.seller-cover {
+  padding-top: 100%;
+  border: solid #fefefe 2px;
+  background: no-repeat center;
+  background-size: contain;
+  margin: auto;
+  box-sizing: border-box;
+}
+
+.seller-title {
+  text-align: center;
+  margin-top: 4px;
+  font-size: 21px;
+}
+
+@media (max-width: 720px) {
+  .seller-title {
+    font-size: 17px;
+  }
+}
