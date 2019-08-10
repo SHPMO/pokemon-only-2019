@@ -27,8 +27,14 @@ export default class Sellers extends React.Component<{}, { sellers: ModelArray<S
 
   public render() {
     const sellerIds = Object.keys(this.state.sellers)
+    if (sellerIds.length % 2 === 1) {
+      sellerIds.push('')
+    }
     return (<div className="seller-list">
       {sellerIds.length > 0 ? sellerIds.map((sellerId, i: number) => {
+        if (sellerId === '') {
+          return <div key={i} className="seller-display" />
+        }
         const seller = this.state.sellers[sellerId] as Seller
         return (<Link to={'/stall/' + sellerId} key={i} className="seller-display">
           <div className="seller-cover"

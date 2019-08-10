@@ -29,6 +29,9 @@ export default class Items extends React.Component<{ sellerId?: string }, { item
 
   public render() {
     const itemIds = Object.keys(this.state.items)
+    if (itemIds.length % 2 === 1) {
+      itemIds.push('')
+    }
     return (<div>
       <div className="item-list">
         {itemIds.length > 0 ? itemIds.map((itemId, i: number) => {

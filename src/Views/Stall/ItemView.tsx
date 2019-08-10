@@ -98,11 +98,17 @@ export default class ItemView extends React.Component<RouteComponentProps<{
         <div id="item-images" className="item-others-multiline clear-group">
           <span>相关图像：</span>
           <div>
-            {item.item_pictures.map((x, i) =>
-              <div key={i} className="item-image-thumb" onClick={this.togglePreview(x)}>
-                <div style={{backgroundImage: API.getBackgroundImage(x)}}/>
-              </div>
-            )}
+            {(() => {
+              const itemPictures = item.item_pictures
+              if (itemPictures.length % 2 === 1) {
+                itemPictures.push('')
+              }
+              return itemPictures.map((x, i) => x === '' ? <div key={i} className="item-image-thumb item-image-thumb-empty"/> :
+                <div key={i} className="item-image-thumb" onClick={this.togglePreview(x)}>
+                  <div style={{backgroundImage: API.getBackgroundImage(x)}}/>
+                </div>
+              )
+            })()}
           </div>
         </div>
         {this.state.preview !== null ?

@@ -51,6 +51,10 @@
   margin: 8px auto;
 }
 
+.item-image-thumb-empty {
+  border: none;
+}
+
 .item-image-thumb > div {
   padding-top: 100%;
   background: no-repeat center;
