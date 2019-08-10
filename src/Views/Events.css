@@ -2,3 +2,8 @@
   text-align: left;
   font-size: 20px;
 }
+
+.events-highlight {
+  font-weight: bold;
+  color: #ea2b29;
+}
